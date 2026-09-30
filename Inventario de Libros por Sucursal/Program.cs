@@ -1,5 +1,9 @@
-﻿namespace Inventario_de_Libros_por_Sucursal;
+namespace Inventario_de_Libros_por_Sucursal;
 
+/// <summary>
+/// Punto de entrada de la aplicación: muestra un menú de consola que permite
+/// consultar y actualizar el inventario de libros por sucursal.
+/// </summary>
 internal class Program
 {
     static readonly BranchInventory inventory = new();
@@ -8,6 +12,7 @@ internal class Program
     {
         string option;
 
+        // Bucle principal del menú: se repite hasta que el usuario elija "0" (Salir).
         do
         {
             Console.Clear();
@@ -41,6 +46,7 @@ internal class Program
         } while (option != "0");
     }
 
+    /// <summary>Opción 1: muestra la tabla completa de inventario.</summary>
     static void ShowInventory()
     {
         Console.Clear();
@@ -48,6 +54,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 2: pide un libro y una sucursal, y muestra la cantidad disponible.</summary>
     static void CheckAvailability()
     {
         Console.Clear();
@@ -59,6 +66,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 3: pide un libro, una sucursal y una nueva cantidad, y actualiza el inventario.</summary>
     static void UpdateAvailability()
     {
         Console.Clear();
@@ -73,6 +81,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 4: pide un libro y muestra su total disponible en todas las sucursales.</summary>
     static void BookTotal()
     {
         Console.Clear();
@@ -83,6 +92,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 5: pide una sucursal y muestra el total de inventario que tiene.</summary>
     static void BranchTotal()
     {
         Console.Clear();
@@ -93,6 +103,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 6: muestra los libros con inventario bajo en alguna sucursal.</summary>
     static void LowInventory()
     {
         Console.Clear();
@@ -100,6 +111,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Opción 7: pide un libro y muestra la sucursal con mayor disponibilidad de ese libro.</summary>
     static void BranchWithMostStock()
     {
         Console.Clear();
@@ -111,6 +123,7 @@ internal class Program
         Pause();
     }
 
+    /// <summary>Lista los libros disponibles y devuelve el índice (base 0) elegido por el usuario.</summary>
     static int SelectBook()
     {
         Console.WriteLine("Libros:");
@@ -121,6 +134,7 @@ internal class Program
         return ReadInt("Seleccione el libro: ", 1, inventory.BookCount) - 1;
     }
 
+    /// <summary>Lista las sucursales disponibles y devuelve el índice (base 0) elegido por el usuario.</summary>
     static int SelectBranch()
     {
         Console.WriteLine("\nSucursales:");
@@ -131,6 +145,10 @@ internal class Program
         return ReadInt("Seleccione la sucursal: ", 1, inventory.BranchCount) - 1;
     }
 
+    /// <summary>
+    /// Lee un entero de consola validando que esté en el rango [min, max],
+    /// repitiendo la pregunta hasta recibir un valor válido.
+    /// </summary>
     static int ReadInt(string message, int min, int max)
     {
         while (true)
@@ -149,6 +167,7 @@ internal class Program
         }
     }
 
+    /// <summary>Pausa la ejecución hasta que el usuario presione una tecla.</summary>
     static void Pause()
     {
         Console.Write("\nPresione cualquier tecla para continuar...");
